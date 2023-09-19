@@ -9,20 +9,42 @@ parser.add_argument('path', help = 'the path to the folder')
 
 args = parser.parse_args()
 
-class SuperFolder :
-    
-    def __init__(self, mypath) -> None:
-        self.mypath = mypath
+from pathlib import Path
 
-    def PathCreator(self):
-        create_project_data_path(self.mypath)
+def create_project_structure():
+    # Chemin racine du projet
+    project_root = Path("data_analysis_project")
 
-    def Init(self):
-        git_repo_init(self.mypath)
+    # Répertoires de premier niveau
+    data_dir = project_root / "data"
+    docs_dir = project_root / "docs"
+    models_dir = project_root / "models"
+    notebooks_dir = project_root / "notebooks"
+    reports_dir = project_root / "reports"
+    src_dir = project_root / "src"
 
-if  __name__ == '__main__':
+    # Sous-répertoires de data/
+    data_cleaned_dir = data_dir / "cleaned"
+    data_raw_dir = data_dir / "raw"
+
+    # Création de l'arborescence
+    project_root.mkdir()
+    data_dir.mkdir()
+    docs_dir.mkdir()
+    models_dir.mkdir()
+    notebooks_dir.mkdir()
+    reports_dir.mkdir()
+    src_dir.mkdir()
+    data_cleaned_dir.mkdir()
+    data_raw_dir.mkdir()
+
+    # Création de quelques fichiers de démonstration
+    main_notebook_file = notebooks_dir / "main_notebook.ipynb"
+    utils_file = src_dir / "utils.py"
+
+    main_notebook_file.touch()
+    utils_file.touch()
+
+if __name__ == "__main__":
     given_Path = args.path
-    os.makedirs(given_Path, exist_ok=True)
-    DataCreator1 = SuperFolder(given_Path)
-    DataCreator1.PathCreator()
-    DataCreator1.Init()
+    create_project_structure()
