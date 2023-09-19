@@ -1,3 +1,4 @@
+#Moussa DIALLO, MASTER 2 DATASCIENCE DIT
 import git
 import os
 from pathlib import Path
